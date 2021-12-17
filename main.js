@@ -32,18 +32,32 @@ function selectit(string){
     // 選択可能にする
     prefectures.disabled = false
 }
+// select であることを諦める
+// https://getbootstrap.jp/docs/4.2/components/dropdowns/
 
 // <select>--都道府県--</select> をクリックしたら
-prefectures.addEventListener('click', show_widget)
-// キーボード利用者向けに、Tab でフォーカスを移したとき
-// また、Google Chrome で、マウスをクリックしたら
-prefectures.addEventListener('focus', show_widget)
+pref.addEventListener('click', show_widget, false)
+pref.addEventListener('focus', show_widget, false)
+pref.addEventListener('input', show_widget, false)
+prefectures.addEventListener('click', show_widget, false)
+prefectures.addEventListener('input', show_widget, false)
+prefectures.addEventListener('focus', show_widget, false)
+prefectures.addEventListener('focusin', show_widget, false)
+prefectures.addEventListener('focus', show_widget, true)
 
+prefectures.readonly = true
 function show_widget(event){
-    // 選択不可能にする
-    prefectures.disabled = true
-    // ウィジェットを表示
+    event.stopImmediatePropagation()
+    event.stopPropagation()
+    // select を選択不可能にする
+//    prefectures.disabled = true
+    // 都道府県選択ウィジェットを表示
     prefecture_list.style.display = "block"
     // modal であることを示すため、背景色を暗くする
     body.style.background = "gray"
+    
+    console.log(this)  // この実験の結果、click の前にfocus が捕まえられていることがわかった. 逆にclick は捕獲していない
+    console.log(event)  // この実験の結果、click の前にfocus が捕まえられていることがわかった. 逆にclick は捕獲していない
+    console.log(event.cancelable)   // focus はcancelable = false なので、
+                                    // event.preventDefault() // これを入れても効き目なし
 }

@@ -21,13 +21,33 @@ ul {
     border-radius: 3px;
     width: 1000px;
 }
+
+/* select をクリックしたときの謎の灰色を追跡する */
+option:checked {
+    border: 10px solid red;
+    background-color: red !important;
+    color: blue !important;
+}
+select > option {
+    padding-inline: 0px;
+}
+option {
+    /*
+    display: none;
+    */
+    padding-block: 0px;
+    user-select: none;
+}
+option:focus{
+    display:none;
+}
     </style>
 </head>
 <body>
     <h1>都道府県選択</h1>
     <form>
         <div class="pref-wrapper">
-            <select id="prefectures">
+            <select id="prefectures" readonly>
                 <option value="" id="pref">--都道府県--</option>
             </select>
             <ul class="prefecture-list">
