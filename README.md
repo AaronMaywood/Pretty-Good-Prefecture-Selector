@@ -8,10 +8,7 @@
 
 - Ubuntu
     - Google Chrome
-
-# Bugs
-
-- [firefox] select をクリックした際、ブラウザーのプルダウンを表示しないようにする
+    - Firefox
 
 # TODO
 
