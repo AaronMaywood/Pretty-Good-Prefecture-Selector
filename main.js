@@ -4,7 +4,6 @@ const prefecture_list = document.querySelector('.prefecture-list')
 
 // 操作の対象
 const prefectures = document.querySelector('#prefectures')
-const pref = document.querySelector('#pref')
 
 // 都道府県のリストを加工する
 // <li>北海道</li>
@@ -27,37 +26,20 @@ function selectit(string){
     // modal であったことを示す背景の色を戻し、(本格的なmodal の実装とは異なり、ここでは単にbody の背景色を変えているだけである)
     body.style.background = "white"
     // 選ばれた都道府県を選択結果として格納
-    pref.value=string
-    pref.innerText=string
+    prefectures.value=string
+    prefectures.innerText=string + ' ▼'
     // 選択可能にする
     prefectures.disabled = false
 }
-// select であることを諦める
-// https://getbootstrap.jp/docs/4.2/components/dropdowns/
 
 // <select>--都道府県--</select> をクリックしたら
-pref.addEventListener('click', show_widget, false)
-pref.addEventListener('focus', show_widget, false)
-pref.addEventListener('input', show_widget, false)
-prefectures.addEventListener('click', show_widget, false)
-prefectures.addEventListener('input', show_widget, false)
-prefectures.addEventListener('focus', show_widget, false)
-prefectures.addEventListener('focusin', show_widget, false)
-prefectures.addEventListener('focus', show_widget, true)
+prefectures.addEventListener('click', show_widget)
 
-prefectures.readonly = true
 function show_widget(event){
-    event.stopImmediatePropagation()
-    event.stopPropagation()
-    // select を選択不可能にする
-//    prefectures.disabled = true
     // 都道府県選択ウィジェットを表示
     prefecture_list.style.display = "block"
     // modal であることを示すため、背景色を暗くする
     body.style.background = "gray"
-    
-    console.log(this)  // この実験の結果、click の前にfocus が捕まえられていることがわかった. 逆にclick は捕獲していない
-    console.log(event)  // この実験の結果、click の前にfocus が捕まえられていることがわかった. 逆にclick は捕獲していない
-    console.log(event.cancelable)   // focus はcancelable = false なので、
-                                    // event.preventDefault() // これを入れても効き目なし
+    // クリックのデフォルトの動作(この場合は再読込が発生)を防止
+    event.preventDefault()
 }
