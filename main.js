@@ -1,6 +1,7 @@
 // 表示のコントロール用
 const body = document.querySelector('body')
 const prefecture_list = document.querySelector('.prefecture-list')
+prefecture_list.style.display = "none"
 
 // 操作の対象
 const prefectures = document.querySelector('#prefectures')
@@ -37,7 +38,7 @@ prefectures.addEventListener('click', show_widget)
 
 function show_widget(event){
     // 都道府県選択ウィジェットを表示
-    prefecture_list.style.display = "block"
+    prefecture_list.style.display = "grid"
     // modal であることを示すため、背景色を暗くする
     body.style.background = "gray"
     // クリックのデフォルトの動作(この場合は再読込が発生)を防止
