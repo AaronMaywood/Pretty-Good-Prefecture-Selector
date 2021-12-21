@@ -13,7 +13,9 @@
 
 ## select をクリックした際、ブラウザーのプルダウンを表示しないようにする
 ### 調査
+
 - どのイベントによってプルダウン表示がキックされるかを調べる
+```
 pref.addEventListener('click', show_widget, false)
 pref.addEventListener('focus', show_widget, false)
 pref.addEventListener('input', show_widget, false)
@@ -27,11 +29,15 @@ function show_widget(event){
     console.log(event.cancelable)   // focus はcancelable = false なので、
                                     // event.preventDefault() を入れても効き目なし
 }
+```
 
 -
+```
 function show_widget(event){
     prefectures.style.display = 'none' これをしても一瞬、表示されてしまう
+```
 - ブラウザーのデフォルトスタイルシートを確認し、上書きしてみる
+```
 option:checked {
     border: 10px solid red;
     background-color: red !important;
@@ -50,6 +56,7 @@ option {
     word-wrap: normal !important;
     text-align: match-parent;
 }
+```
 
 # TODO
 
